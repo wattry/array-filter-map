@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest'
+import { defineConfig } from 'vitest';
 
 export default defineConfig({
   base: './',
@@ -12,4 +12,4 @@ export default defineConfig({
       reporter: ['text', 'json', 'html']
     }
   },
-})
+});
