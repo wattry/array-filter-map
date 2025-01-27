@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 import nodePlugin from 'eslint-plugin-n';
 
 const files = ['src/**/*.ts', 'types/**/*.ts', '__tests__/**/*.ts', '__mocks__/**/*.ts'];
-const ignores = ['dist', 'node_modules'];
+const ignores = ['dist/**/*', 'node_modules/**/*'];
 
 const config = tseslint.config(
   eslint.configs.recommended,

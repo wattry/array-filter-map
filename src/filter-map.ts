@@ -1,3 +1,4 @@
+import { filterMap } from './map.ts';
 declare global {
   interface Array<T> {
     /**
@@ -8,21 +9,4 @@ declare global {
   }
 }
 
-Array.prototype.filterMap = function<T, U>(
-  this: T[],
-  predicate: (value: T, index: number, array: T[]) => U | void
-): U[] {
-  const array: U[] = [];
-
-  for (let i = 0; i < this.length; i++) {
-    const result = predicate(this[i] as T, i, this);
-
-    if (result === undefined) {
-      continue;
-    } else {
-      array.push(result);
-    }
-  }
-
-  return array;
-};
+Array.prototype.filterMap = filterMap;

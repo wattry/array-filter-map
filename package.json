@@ -1,28 +1,28 @@
 {
-  "name": "@wattry/filter-map",
+  "name": "@wattry/array-filter-map",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "vitest -config ./vitest.config.ts",
-    "build": "concurrently 'rm -rf ./dist' 'pnpm:build:cjs' 'pnpm:build:esm' 'pnpm:build:types'",
-    "build:esm": "tsup src --tsconfig ./tsconfig.json --format esm -d dist",
-    "build:cjs": "tsup src --tsconfig ./tsconfig.cjs.json --format cjs -d dist --cjsInterop --splitting",
-    "build:types": "tsup src --tsconfig ./tsconfig.json --format esm -d dist --dts-only",
-    "build:pack": "pnpm build && pnpm pack",
-    "dev": "node --loader ts-node/esm --watch=./src ./src/index.ts",
-    "start": "node ./dist/esm/index.js",
-    "start:cjs": "node ./dist/cjs/index.cjs",
-    "clean": "rm -rf node_module dist",
-    "test:watch": "vitest --passWithNoTests --watch --config ./vitest.config.ts",
-    "test:ci": "vitest . --silent --collectCoverage --coverageDirectory='./coverage' --ci --reporters=default --watchAll=false --passWithNoTests --config ./vitest.config.ts",
-    "upgrade:all": "pnpm update --latest",
-    "lint:config": "pnpx @eslint/config-inspector@latest --config ./eslint.config.js",
-    "lint": "eslint --no-warn-ignored src/**/*.ts",
-    "lint:fix": "eslint --fix --no-warn-ignored src/**/*.ts"
-  },
+  "description": "A JavaScript polyfill for implementing an Array prototype function to filter and map an array",
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0",
+  "scripts": {
+    "build": "concurrently 'rm -rf ./dist' 'pnpm:build:esm' 'pnpm:build:types'",
+    "build:cjs": "tsup src --tsconfig ./tsconfig.cjs.json --format cjs -d dist --cjsInterop --splitting",
+    "build:esm": "tsup src --tsconfig ./tsconfig.json --format esm -d dist",
+    "build:pack": "pnpm build && pnpm pack",
+    "build:types": "tsup src --tsconfig ./tsconfig.json --format esm -d dist --dts-only",
+    "clean": "rm -rf node_module dist",
+    "dev": "node --loader ts-node/esm --watch=./src ./src/index.ts",
+    "lint": "eslint --no-warn-ignored src/**/*.ts",
+    "lint:config": "pnpx @eslint/config-inspector@latest --config ./eslint.config.js",
+    "lint:fix": "eslint --fix --no-warn-ignored src/**/*.ts",
+    "start": "node ./dist/esm/index.js",
+    "start:cjs": "node ./dist/cjs/index.cjs",
+    "test": "vitest --run --config ./vitest.config.ts",
+    "test:ci": "vitest --run --coverage --passWithNoTests --silent --config ./vitest.config.js",
+    "test:watch": "vitest --passWithNoTests --watch --config ./vitest.config.ts",
+    "upgrade:all": "pnpm update --latest",
+    "prepare": "husky"
+  },
   "devDependencies": {
     "@eslint/config-inspector": "1.0.0",
     "@eslint/js": "9.19.0",
@@ -30,6 +30,7 @@
     "@types/eslint__js": "8.42.3",
     "@types/node": "22.10.10",
     "@vitest/browser": "3.0.4",
+    "@vitest/coverage-v8": "3.0.4",
     "concurrently": "9.1.2",
     "dotenv": "16.4.7",
     "dotenv-expand": "12.0.1",
@@ -52,22 +53,5 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
-  "main": "./dist/index.cjs",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./filter-map": {
-      "import": "./dist/filter-map.js",
-      "require": "./dist/filter-map.cjs",
-      "types": "./dist/filter-map.d.ts"
-    },
-    "./filter-map-replace": {
-      "import": "./dist/filter-map-replace.js",
-      "require": "./dist/filter-map-replace.cjs",
-      "types": "./dist/filter-map-replace.d.ts"
-    }
-  }
+  "license": "Apache-2.0"
 }
